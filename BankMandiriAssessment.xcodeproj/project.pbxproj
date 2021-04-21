@@ -3,27 +3,47 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17D06734F7A945D3C55B991E /* Pods_BankMandiriAssessment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DCFC8BFF5A56447ED9E1F89 /* Pods_BankMandiriAssessment.framework */; };
 		5A0FA54F262EFD4B00F54F32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0FA54E262EFD4B00F54F32 /* AppDelegate.swift */; };
 		5A0FA551262EFD4B00F54F32 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0FA550262EFD4B00F54F32 /* SceneDelegate.swift */; };
-		5A0FA553262EFD4B00F54F32 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0FA552262EFD4B00F54F32 /* ViewController.swift */; };
-		5A0FA556262EFD4B00F54F32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A0FA554262EFD4B00F54F32 /* Main.storyboard */; };
+		5A0FA553262EFD4B00F54F32 /* GenresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0FA552262EFD4B00F54F32 /* GenresViewController.swift */; };
 		5A0FA558262EFD4D00F54F32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A0FA557262EFD4D00F54F32 /* Assets.xcassets */; };
 		5A0FA55B262EFD4D00F54F32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A0FA559262EFD4D00F54F32 /* LaunchScreen.storyboard */; };
+		5A0FA56B262F019D00F54F32 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0FA56A262F019D00F54F32 /* APICaller.swift */; };
+		5A6688D7262FBF9200F8BA77 /* AllGenres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6688D6262FBF9200F8BA77 /* AllGenres.swift */; };
+		5A6688DC262FCB2D00F8BA77 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6688DB262FCB2D00F8BA77 /* MoviesViewController.swift */; };
+		5A6688DF262FEFF600F8BA77 /* AllMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6688DE262FEFF600F8BA77 /* AllMovies.swift */; };
+		5A6688E3262FFD3200F8BA77 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6688E2262FFD3200F8BA77 /* MovieCollectionViewCell.swift */; };
+		5A6688E6262FFE4400F8BA77 /* MovieCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6688E5262FFE4400F8BA77 /* MovieCollectionViewCellViewModel.swift */; };
+		5A6688E9263001EA00F8BA77 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6688E8263001EA00F8BA77 /* Extensions.swift */; };
+		5A6688EC26300BF000F8BA77 /* LoadingIndicatorCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6688EB26300BF000F8BA77 /* LoadingIndicatorCollectionReusableView.swift */; };
+		5A6688F42630481000F8BA77 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6688F32630481000F8BA77 /* MovieDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		52D4FCA0590C2BC058C45560 /* Pods-BankMandiriAssessment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BankMandiriAssessment.debug.xcconfig"; path = "Target Support Files/Pods-BankMandiriAssessment/Pods-BankMandiriAssessment.debug.xcconfig"; sourceTree = "<group>"; };
 		5A0FA54B262EFD4B00F54F32 /* BankMandiriAssessment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankMandiriAssessment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A0FA54E262EFD4B00F54F32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A0FA550262EFD4B00F54F32 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5A0FA552262EFD4B00F54F32 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5A0FA555262EFD4B00F54F32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5A0FA552262EFD4B00F54F32 /* GenresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresViewController.swift; sourceTree = "<group>"; };
 		5A0FA557262EFD4D00F54F32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A0FA55A262EFD4D00F54F32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5A0FA55C262EFD4D00F54F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5A0FA56A262F019D00F54F32 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		5A6688D6262FBF9200F8BA77 /* AllGenres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGenres.swift; sourceTree = "<group>"; };
+		5A6688DB262FCB2D00F8BA77 /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
+		5A6688DE262FEFF600F8BA77 /* AllMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMovies.swift; sourceTree = "<group>"; };
+		5A6688E2262FFD3200F8BA77 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
+		5A6688E5262FFE4400F8BA77 /* MovieCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		5A6688E8263001EA00F8BA77 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		5A6688EB26300BF000F8BA77 /* LoadingIndicatorCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorCollectionReusableView.swift; sourceTree = "<group>"; };
+		5A6688F32630481000F8BA77 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		8DCFC8BFF5A56447ED9E1F89 /* Pods_BankMandiriAssessment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BankMandiriAssessment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7F090ED753889D47D60DD32 /* Pods-BankMandiriAssessment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BankMandiriAssessment.release.xcconfig"; path = "Target Support Files/Pods-BankMandiriAssessment/Pods-BankMandiriAssessment.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +51,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17D06734F7A945D3C55B991E /* Pods_BankMandiriAssessment.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		33F5523636D691C562453A39 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8DCFC8BFF5A56447ED9E1F89 /* Pods_BankMandiriAssessment.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5A0FA542262EFD4B00F54F32 = {
 			isa = PBXGroup;
 			children = (
 				5A0FA54D262EFD4B00F54F32 /* BankMandiriAssessment */,
 				5A0FA54C262EFD4B00F54F32 /* Products */,
+				A89A3E89ACE29986F2A693CC /* Pods */,
+				33F5523636D691C562453A39 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +87,80 @@
 		5A0FA54D262EFD4B00F54F32 /* BankMandiriAssessment */ = {
 			isa = PBXGroup;
 			children = (
-				5A0FA54E262EFD4B00F54F32 /* AppDelegate.swift */,
-				5A0FA550262EFD4B00F54F32 /* SceneDelegate.swift */,
-				5A0FA552262EFD4B00F54F32 /* ViewController.swift */,
-				5A0FA554262EFD4B00F54F32 /* Main.storyboard */,
+				5A0FA569262F016800F54F32 /* Resources */,
+				5A0FA568262F016300F54F32 /* Managers */,
+				5A0FA567262F015A00F54F32 /* Models */,
+				5A0FA566262F015100F54F32 /* ViewModels */,
+				5A0FA565262F014200F54F32 /* Views */,
+				5A0FA564262F012B00F54F32 /* Controllers */,
 				5A0FA557262EFD4D00F54F32 /* Assets.xcassets */,
-				5A0FA559262EFD4D00F54F32 /* LaunchScreen.storyboard */,
 				5A0FA55C262EFD4D00F54F32 /* Info.plist */,
 			);
 			path = BankMandiriAssessment;
+			sourceTree = "<group>";
+		};
+		5A0FA564262F012B00F54F32 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5A0FA552262EFD4B00F54F32 /* GenresViewController.swift */,
+				5A6688DB262FCB2D00F8BA77 /* MoviesViewController.swift */,
+				5A6688F32630481000F8BA77 /* MovieDetailViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5A0FA565262F014200F54F32 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5A0FA559262EFD4D00F54F32 /* LaunchScreen.storyboard */,
+				5A6688E2262FFD3200F8BA77 /* MovieCollectionViewCell.swift */,
+				5A6688EB26300BF000F8BA77 /* LoadingIndicatorCollectionReusableView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5A0FA566262F015100F54F32 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5A6688E5262FFE4400F8BA77 /* MovieCollectionViewCellViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		5A0FA567262F015A00F54F32 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5A6688D6262FBF9200F8BA77 /* AllGenres.swift */,
+				5A6688DE262FEFF600F8BA77 /* AllMovies.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5A0FA568262F016300F54F32 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5A0FA56A262F019D00F54F32 /* APICaller.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		5A0FA569262F016800F54F32 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5A0FA54E262EFD4B00F54F32 /* AppDelegate.swift */,
+				5A0FA550262EFD4B00F54F32 /* SceneDelegate.swift */,
+				5A6688E8263001EA00F8BA77 /* Extensions.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A89A3E89ACE29986F2A693CC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				52D4FCA0590C2BC058C45560 /* Pods-BankMandiriAssessment.debug.xcconfig */,
+				C7F090ED753889D47D60DD32 /* Pods-BankMandiriAssessment.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +170,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A0FA55F262EFD4D00F54F32 /* Build configuration list for PBXNativeTarget "BankMandiriAssessment" */;
 			buildPhases = (
+				2FCBE069852B7C61731EB6C8 /* [CP] Check Pods Manifest.lock */,
 				5A0FA547262EFD4B00F54F32 /* Sources */,
 				5A0FA548262EFD4B00F54F32 /* Frameworks */,
 				5A0FA549262EFD4B00F54F32 /* Resources */,
+				C9DA98058E19B74A2B316547 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,34 +224,76 @@
 			files = (
 				5A0FA55B262EFD4D00F54F32 /* LaunchScreen.storyboard in Resources */,
 				5A0FA558262EFD4D00F54F32 /* Assets.xcassets in Resources */,
-				5A0FA556262EFD4B00F54F32 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2FCBE069852B7C61731EB6C8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BankMandiriAssessment-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C9DA98058E19B74A2B316547 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BankMandiriAssessment/Pods-BankMandiriAssessment-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BankMandiriAssessment/Pods-BankMandiriAssessment-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BankMandiriAssessment/Pods-BankMandiriAssessment-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5A0FA547262EFD4B00F54F32 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A0FA553262EFD4B00F54F32 /* ViewController.swift in Sources */,
+				5A6688DF262FEFF600F8BA77 /* AllMovies.swift in Sources */,
+				5A0FA553262EFD4B00F54F32 /* GenresViewController.swift in Sources */,
 				5A0FA54F262EFD4B00F54F32 /* AppDelegate.swift in Sources */,
 				5A0FA551262EFD4B00F54F32 /* SceneDelegate.swift in Sources */,
+				5A6688F42630481000F8BA77 /* MovieDetailViewController.swift in Sources */,
+				5A6688E6262FFE4400F8BA77 /* MovieCollectionViewCellViewModel.swift in Sources */,
+				5A6688E9263001EA00F8BA77 /* Extensions.swift in Sources */,
+				5A0FA56B262F019D00F54F32 /* APICaller.swift in Sources */,
+				5A6688D7262FBF9200F8BA77 /* AllGenres.swift in Sources */,
+				5A6688DC262FCB2D00F8BA77 /* MoviesViewController.swift in Sources */,
+				5A6688E3262FFD3200F8BA77 /* MovieCollectionViewCell.swift in Sources */,
+				5A6688EC26300BF000F8BA77 /* LoadingIndicatorCollectionReusableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		5A0FA554262EFD4B00F54F32 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5A0FA555262EFD4B00F54F32 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5A0FA559262EFD4D00F54F32 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -283,6 +423,7 @@
 		};
 		5A0FA560262EFD4D00F54F32 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52D4FCA0590C2BC058C45560 /* Pods-BankMandiriAssessment.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -302,6 +443,7 @@
 		};
 		5A0FA561262EFD4D00F54F32 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7F090ED753889D47D60DD32 /* Pods-BankMandiriAssessment.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
