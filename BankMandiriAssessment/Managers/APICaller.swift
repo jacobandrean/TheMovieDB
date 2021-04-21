@@ -62,6 +62,28 @@ final class APICaller {
             task.resume()
         }
     }
+    //https://api.themoviedb.org/3/movie/644083/videos?api_key=9cf5ae4b51f89dfbf930cffb014510ce&language=en-US
+
+    public func getVideo(for movieID: Int, completion: @escaping (Result<VideoResult,Error>) -> Void) {
+        let urlString = Constants.baseEndpoint + "/movie/\(movieID)/videos?" + Constants.apiKey + Constants.language
+        createRequest(with: URL(string: urlString), type: .GET) { (request) in
+            let task = URLSession.shared.dataTask(with: request) { (data, _, error) in
+                guard let data = data, error == nil else {
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                do {
+                    let result = try JSONDecoder().decode(Video.self, from: data)
+                    if let res = result.results.first {
+                        completion(.success(res))
+                    }
+                } catch {
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        }
+    }
     
     enum HTTPMethod: String {
         case GET, POST

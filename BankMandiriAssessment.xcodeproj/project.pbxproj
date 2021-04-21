@@ -22,6 +22,7 @@
 		5A6688E9263001EA00F8BA77 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6688E8263001EA00F8BA77 /* Extensions.swift */; };
 		5A6688EC26300BF000F8BA77 /* LoadingIndicatorCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6688EB26300BF000F8BA77 /* LoadingIndicatorCollectionReusableView.swift */; };
 		5A6688F42630481000F8BA77 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6688F32630481000F8BA77 /* MovieDetailViewController.swift */; };
+		5A6688FB26305A5D00F8BA77 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6688FA26305A5D00F8BA77 /* Video.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		5A6688E8263001EA00F8BA77 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5A6688EB26300BF000F8BA77 /* LoadingIndicatorCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorCollectionReusableView.swift; sourceTree = "<group>"; };
 		5A6688F32630481000F8BA77 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		5A6688FA26305A5D00F8BA77 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		8DCFC8BFF5A56447ED9E1F89 /* Pods_BankMandiriAssessment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BankMandiriAssessment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7F090ED753889D47D60DD32 /* Pods-BankMandiriAssessment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BankMandiriAssessment.release.xcconfig"; path = "Target Support Files/Pods-BankMandiriAssessment/Pods-BankMandiriAssessment.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +134,7 @@
 			children = (
 				5A6688D6262FBF9200F8BA77 /* AllGenres.swift */,
 				5A6688DE262FEFF600F8BA77 /* AllMovies.swift */,
+				5A6688FA26305A5D00F8BA77 /* Video.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				5A6688E9263001EA00F8BA77 /* Extensions.swift in Sources */,
 				5A0FA56B262F019D00F54F32 /* APICaller.swift in Sources */,
 				5A6688D7262FBF9200F8BA77 /* AllGenres.swift in Sources */,
+				5A6688FB26305A5D00F8BA77 /* Video.swift in Sources */,
 				5A6688DC262FCB2D00F8BA77 /* MoviesViewController.swift in Sources */,
 				5A6688E3262FFD3200F8BA77 /* MovieCollectionViewCell.swift in Sources */,
 				5A6688EC26300BF000F8BA77 /* LoadingIndicatorCollectionReusableView.swift in Sources */,
