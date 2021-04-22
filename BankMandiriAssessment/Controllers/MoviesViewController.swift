@@ -103,9 +103,8 @@ extension MoviesViewController: UICollectionViewDataSource, UICollectionViewDele
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        print(movies[indexPath.row].title)
-        print(movies[indexPath.row].id)
         let vc = MovieDetailViewController(movieResult: movies[indexPath.row])
+        vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
     }
     

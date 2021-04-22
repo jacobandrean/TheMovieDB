@@ -62,7 +62,6 @@ final class APICaller {
             task.resume()
         }
     }
-    //https://api.themoviedb.org/3/movie/644083/videos?api_key=9cf5ae4b51f89dfbf930cffb014510ce&language=en-US
 
     public func getVideo(for movieID: Int, completion: @escaping (Result<VideoResult,Error>) -> Void) {
         let urlString = Constants.baseEndpoint + "/movie/\(movieID)/videos?" + Constants.apiKey + Constants.language
@@ -78,6 +77,27 @@ final class APICaller {
                         completion(.success(res))
                     }
                 } catch {
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    //https://api.themoviedb.org/3/movie/399566/reviews?api_key=9cf5ae4b51f89dfbf930cffb014510ce&language=en-US&page=1
+    public func getReviews(for movieID: Int, page: Int = 1, completion: @escaping (Result<[ReviewResult], Error>) -> Void) {
+        let urlString = Constants.baseEndpoint + "/movie/\(movieID)/reviews?" + Constants.apiKey + Constants.language + "&page=\(page)"
+        createRequest(with: URL(string: urlString), type: .GET) { (request) in
+            let task = URLSession.shared.dataTask(with: request) { (data, _, error) in
+                guard let data = data, error == nil else {
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                do {
+                    let result = try JSONDecoder().decode(Review.self, from: data)
+                    completion(.success(result.results))
+                } catch {
+                    print(error)
                     completion(.failure(error))
                 }
             }
