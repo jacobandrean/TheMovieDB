@@ -13,7 +13,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     private let movieImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "person")
+        imageView.image = UIImage(systemName: "rays")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()

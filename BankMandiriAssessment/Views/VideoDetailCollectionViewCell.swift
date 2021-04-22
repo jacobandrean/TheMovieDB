@@ -14,6 +14,7 @@ class VideoDetailCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -21,6 +22,7 @@ class VideoDetailCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -35,14 +37,8 @@ class VideoDetailCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        return super.preferredLayoutAttributesFitting(layoutAttributes)
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        overviewLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor),
@@ -53,13 +49,10 @@ class VideoDetailCollectionViewCell: UICollectionViewCell {
             overviewLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             overviewLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-//        titleLabel.frame = CGRect(x: 0, y: 0, width: width, height: 1)
-//        titleLabel.sizeToFit()
-//        overviewLabel.frame = CGRect(x: 0, y: titleLabel.bottom, width: width, height: 1)
-//        overviewLabel.sizeToFit()
     }
     
     public func configureCell(with viewModel: VideoDetailCollectionViewCellViewModel) {
+        layoutIfNeeded()
         titleLabel.text = viewModel.title
         overviewLabel.text = viewModel.overview
     }

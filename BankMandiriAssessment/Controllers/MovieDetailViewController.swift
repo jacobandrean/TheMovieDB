@@ -54,6 +54,10 @@ class MovieDetailViewController: UIViewController {
             VideoDetailCollectionViewCell.self,
             forCellWithReuseIdentifier: VideoDetailCollectionViewCell.identifier
         )
+        collectionView.register(
+            VideoReviewCollectionViewCell.self,
+            forCellWithReuseIdentifier: VideoReviewCollectionViewCell.identifier
+        )
 //        collectionView.register(
 //            LoadingIndicatorCollectionReusableView.self,
 //            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
@@ -111,13 +115,26 @@ extension MovieDetailViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VideoDetailCollectionViewCell.identifier, for: indexPath) as? VideoDetailCollectionViewCell else {
+        switch indexPath.section {
+        case 0:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VideoDetailCollectionViewCell.identifier, for: indexPath) as? VideoDetailCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            cell.configureCell(with: VideoDetailCollectionViewCellViewModel(title: movieResult.title, overview: movieResult.overview))
+            cell.backgroundColor = .yellow
+            return cell
+        case 1:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VideoReviewCollectionViewCell.identifier, for: indexPath) as? VideoReviewCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+//            cell.configureCell(with: VideoDetailCollectionViewCellViewModel(title: movieResult.title, overview: movieResult.overview))
+//            let x = [UIColor.yellow, UIColor.systemPink, UIColor.red, UIColor.systemTeal]
+//            cell.backgroundColor = x[indexPath.row]
+            cell.layoutIfNeeded()
+            return cell
+        default:
             return UICollectionViewCell()
         }
-        cell.configureCell(with: VideoDetailCollectionViewCellViewModel(title: movieResult.title, overview: movieResult.overview))
-        let x = [UIColor.yellow, UIColor.systemPink, UIColor.red, UIColor.systemTeal]
-        cell.backgroundColor = .yellow//x[indexPath.row]
-        return cell
     }
     
     static func createSectionLayout() -> NSCollectionLayoutSection {
@@ -146,7 +163,6 @@ extension MovieDetailViewController: UICollectionViewDataSource, UICollectionVie
             subitem: item,
             count: 1
         )
-//        group.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         
         let section = NSCollectionLayoutSection(group: group)
 //        section.boundarySupplementaryItems = supplementaryViews
