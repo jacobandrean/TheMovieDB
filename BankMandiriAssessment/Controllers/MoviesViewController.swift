@@ -72,9 +72,9 @@ class MoviesViewController: UIViewController {
                     self?.movies.append(contentsOf: movies)
                     DispatchQueue.main.async {
                         self?.collectionView.reloadData()
-                        self?.pageNumber+=1
-                        self?.isFetching = false
                     }
+                    self?.pageNumber+=1
+                    self?.isFetching = false
                 case .failure(let error):
                     print(error)
                     self?.pageNumber+=1
@@ -96,8 +96,11 @@ extension MoviesViewController: UICollectionViewDataSource, UICollectionViewDele
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.identifier, for: indexPath) as? MovieCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.configureCell(with: MovieCollectionViewCellViewModel(with: movies[indexPath.row]))
-        
+        cell.configureCell(
+            with: MovieCollectionViewCellViewModel(
+                with: movies[indexPath.row]
+            )
+        )
         return cell
     }
 
@@ -116,7 +119,6 @@ extension MoviesViewController: UICollectionViewDataSource, UICollectionViewDele
                 for: indexPath) as? LoadingIndicatorCollectionReusableView else {
             return UICollectionReusableView()
         }
-        
         return footer
     }
     
@@ -127,7 +129,6 @@ extension MoviesViewController: UICollectionViewDataSource, UICollectionViewDele
             }
         }
     }
-    
     
     static func createSectionLayout() -> NSCollectionLayoutSection {
         let supplementaryViews = [

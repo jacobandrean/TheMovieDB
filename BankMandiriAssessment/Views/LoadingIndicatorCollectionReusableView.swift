@@ -31,8 +31,4 @@ class LoadingIndicatorCollectionReusableView: UICollectionReusableView {
         super.layoutSubviews()
         activityIndicator.frame = bounds
     }
-    
-    public func configureCollectionReusableView() {
-        
-    }
 }

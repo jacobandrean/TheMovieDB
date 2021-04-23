@@ -17,8 +17,6 @@ final class APICaller {
         static let baseEndpoint = "https://api.themoviedb.org/3"
         static let language = "&language=en-US"
         static let sortBy = "&sort_by=popularity.desc"
-//        https://api.themoviedb.org/3/genre/movie/list?api_key=9cf5ae4b51f89dfbf930cffb014510ce&language=en-US
-//        https://api.themoviedb.org/3/discover/movie?api_key=9cf5ae4b51f89dfbf930cffb014510ce&language=en-US&sort_by=popularity.desc&page=1&with_genres=28
     }
     
     enum APIError: Error {
@@ -84,8 +82,7 @@ final class APICaller {
         }
     }
     
-    //https://api.themoviedb.org/3/movie/399566/reviews?api_key=9cf5ae4b51f89dfbf930cffb014510ce&language=en-US&page=1
-    public func getReviews(for movieID: Int, page: Int = 1, completion: @escaping (Result<[ReviewResult], Error>) -> Void) {
+    public func getReviews(for movieID: Int, page: Int = 1, completion: @escaping (Result<Review, Error>) -> Void) {
         let urlString = Constants.baseEndpoint + "/movie/\(movieID)/reviews?" + Constants.apiKey + Constants.language + "&page=\(page)"
         createRequest(with: URL(string: urlString), type: .GET) { (request) in
             let task = URLSession.shared.dataTask(with: request) { (data, _, error) in
@@ -95,7 +92,7 @@ final class APICaller {
                 }
                 do {
                     let result = try JSONDecoder().decode(Review.self, from: data)
-                    completion(.success(result.results))
+                    completion(.success(result))
                 } catch {
                     print(error)
                     completion(.failure(error))
@@ -106,7 +103,7 @@ final class APICaller {
     }
     
     enum HTTPMethod: String {
-        case GET, POST
+        case GET
     }
     
     private func createRequest(with url: URL?, type: HTTPMethod, completion: @escaping (URLRequest) -> Void) {

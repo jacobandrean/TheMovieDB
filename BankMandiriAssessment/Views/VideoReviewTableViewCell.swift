@@ -1,19 +1,21 @@
 //
-//  VideoReviewCollectionViewCell.swift
+//  VideoReviewTableViewCell.swift
 //  BankMandiriAssessment
 //
 //  Created by Jacob Andrean on 22/04/21.
 //
 
 import UIKit
+import SDWebImage
 
-class VideoReviewCollectionViewCell: UICollectionViewCell {
-    static let identifier = "VideoReviewCollectionViewCell"
+class VideoReviewTableViewCell: UITableViewCell {
+    
+    static let identifier = "VideoReviewTableViewCell"
     
     private let userPhoto: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "person")
-        imageView.contentMode = .center
+        imageView.contentMode = .scaleAspectFit
         imageView.layer.masksToBounds = true
         imageView.backgroundColor = .secondarySystemBackground
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,43 +40,50 @@ class VideoReviewCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addSubview(userPhoto)
-        addSubview(userLabel)
-        addSubview(reviewLabel)
-        contentView.clipsToBounds = true
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.addSubview(userPhoto)
+        contentView.addSubview(userLabel)
+        contentView.addSubview(reviewLabel)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    var uiConstraints: [NSLayoutConstraint] = []
     override func layoutSubviews() {
         super.layoutSubviews()
-        NSLayoutConstraint.activate([
-            userPhoto.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            userPhoto.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+        
+        uiConstraints = [
+            userPhoto.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            userPhoto.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             userPhoto.widthAnchor.constraint(equalToConstant: 40),
             userPhoto.heightAnchor.constraint(equalToConstant: 40),
             
             userLabel.leadingAnchor.constraint(equalTo: userPhoto.trailingAnchor, constant: 10),
             userLabel.topAnchor.constraint(equalTo: userPhoto.topAnchor),
-            userLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            userLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             
             reviewLabel.leadingAnchor.constraint(equalTo: userLabel.leadingAnchor),
             reviewLabel.topAnchor.constraint(equalTo: userLabel.bottomAnchor, constant: 5),
-            reviewLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            reviewLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
-            
-            
-        ])
+            reviewLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            reviewLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+        ]
+        NSLayoutConstraint.activate(uiConstraints)
         userPhoto.layer.cornerRadius = userPhoto.width/2
     }
+    
+    public func configureCell(with viewModel: VideoReviewTableViewCellViewModel) {
+        layoutIfNeeded()
+        isUserInteractionEnabled = false
+        if let path = viewModel.author_details.avatar_path {
+            let stringUrl = "https://www.themoviedb.org/t/p/w300_and_h300_face" + path
+            userPhoto.sd_setImage(with: URL(string: stringUrl), completed: nil)
+        }
+        
+        let date = String(Array(viewModel.created_at)[0..<10])
+        userLabel.text = "\(viewModel.author_details.username) - \(date)"
+        reviewLabel.text = viewModel.content
+    }
 
-//    public func configureCell(with viewModel: VideoDetailCollectionViewCellViewModel) {
-//        layoutIfNeeded()
-//        titleLabel.text = viewModel.title
-//        overviewLabel.text = viewModel.overview
-//    }
 }

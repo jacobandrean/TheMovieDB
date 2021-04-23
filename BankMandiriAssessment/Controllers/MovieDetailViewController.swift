@@ -8,21 +8,19 @@
 import UIKit
 
 class MovieDetailViewController: UIViewController {
-
-    private let collectionView: UICollectionView = UICollectionView(
-        frame: .zero,
-        collectionViewLayout: UICollectionViewCompositionalLayout(
-            sectionProvider: { (sectionIndex, _) -> NSCollectionLayoutSection? in
-                return MovieDetailViewController.createSectionLayout()
-            }
-        )
-    )
     
-    private let videoDetailView = VideoPlayerView()
+    private let videoPlayerView = VideoPlayerView()
+    private let tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        return tableView
+    }()
     
     private let movieResult: MovieResult
     private var videoResult: VideoResult?
     private var reviewResults: [ReviewResult] = []
+    private var pageNumber = 1
+    private var totalPages = 0
+    private var isFetching = false
     
     init(movieResult: MovieResult) {
         self.movieResult = movieResult
@@ -36,36 +34,31 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        view.addSubview(videoDetailView)
-        configureCollectionView()
+        view.addSubview(videoPlayerView)
+        configureTableView()
         fetchVideo()
         fetchVideoReview()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        videoDetailView.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height/3)
-        collectionView.frame = CGRect(x: 0, y: videoDetailView.bottom, width: view.width, height: view.height-(view.height/3))
+        videoPlayerView.frame = CGRect(x: 0, y: 0, width: view.width, height: view.height/3)
+        tableView.frame = CGRect(x: 0, y: videoPlayerView.bottom, width: view.width, height: view.height-(view.height/3))
     }
     
-    private func configureCollectionView() {
-        view.addSubview(collectionView)
-        collectionView.register(
-            VideoDetailCollectionViewCell.self,
-            forCellWithReuseIdentifier: VideoDetailCollectionViewCell.identifier
+    private func configureTableView() {
+        view.addSubview(tableView)
+        tableView.register(
+            VideoDetailTableViewCell.self,
+            forCellReuseIdentifier: VideoDetailTableViewCell.identifier
         )
-        collectionView.register(
-            VideoReviewCollectionViewCell.self,
-            forCellWithReuseIdentifier: VideoReviewCollectionViewCell.identifier
+        tableView.register(
+            VideoReviewTableViewCell.self,
+            forCellReuseIdentifier: VideoReviewTableViewCell.identifier
         )
-//        collectionView.register(
-//            LoadingIndicatorCollectionReusableView.self,
-//            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
-//            withReuseIdentifier: LoadingIndicatorCollectionReusableView.identifier
-//        )
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.backgroundColor = .systemBackground
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.backgroundColor = .systemBackground
     }
     
     private func fetchVideo() {
@@ -75,7 +68,7 @@ class MovieDetailViewController: UIViewController {
                 self?.videoResult = videoResult
                 if let key = self?.videoResult?.key {
                     DispatchQueue.main.async {
-                        self?.videoDetailView.configureVideoPlayer(with: VideoPlayerViewViewModel(key: key))
+                        self?.videoPlayerView.configureVideoPlayer(with: VideoPlayerViewViewModel(key: key))
                     }
                 }
             case .failure(let error):
@@ -85,25 +78,36 @@ class MovieDetailViewController: UIViewController {
     }
     
     private func fetchVideoReview() {
-        APICaller.shared.getReviews(for: movieResult.id) { [weak self] (result) in
-            switch result {
-            case .success(let reviewResults):
-                self?.reviewResults.append(contentsOf: reviewResults)
-            case .failure(let error):
-                print(error)
+        if !isFetching {
+            isFetching = true
+            APICaller.shared.getReviews(for: movieResult.id, page: pageNumber) { [weak self] (result) in
+                sleep(1)
+                switch result {
+                case .success(let review):
+                    self?.reviewResults.append(contentsOf: review.results)
+                    self?.totalPages = review.total_pages
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
+                    }
+                    self?.pageNumber+=1
+                    self?.isFetching = false
+                case .failure(let error):
+                    print(error)
+                    self?.pageNumber+=1
+                    self?.isFetching = false
+                }
             }
         }
     }
     
 }
 
-extension MovieDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+extension MovieDetailViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 1
@@ -114,59 +118,78 @@ extension MovieDetailViewController: UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VideoDetailCollectionViewCell.identifier, for: indexPath) as? VideoDetailCollectionViewCell else {
-                return UICollectionViewCell()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: VideoDetailTableViewCell.identifier, for: indexPath) as? VideoDetailTableViewCell else {
+                return UITableViewCell()
             }
-            cell.configureCell(with: VideoDetailCollectionViewCellViewModel(title: movieResult.title, overview: movieResult.overview))
-            cell.backgroundColor = .yellow
+            cell.configureCell(
+                with: VideoDetailTableViewCellViewModel(
+                    title: movieResult.title,
+                    release_date: movieResult.release_date,
+                    overview: movieResult.overview
+                )
+            )
             return cell
         case 1:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VideoReviewCollectionViewCell.identifier, for: indexPath) as? VideoReviewCollectionViewCell else {
-                return UICollectionViewCell()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: VideoReviewTableViewCell.identifier, for: indexPath) as? VideoReviewTableViewCell else {
+                return UITableViewCell()
             }
-//            cell.configureCell(with: VideoDetailCollectionViewCellViewModel(title: movieResult.title, overview: movieResult.overview))
-//            let x = [UIColor.yellow, UIColor.systemPink, UIColor.red, UIColor.systemTeal]
-//            cell.backgroundColor = x[indexPath.row]
-            cell.layoutIfNeeded()
+            cell.configureCell(
+                with: VideoReviewTableViewCellViewModel(
+                    author_details: reviewResults[indexPath.row].author_details,
+                    content: reviewResults[indexPath.row].content,
+                    created_at: reviewResults[indexPath.row].created_at
+                )
+            )
             return cell
         default:
-            return UICollectionViewCell()
+            return UITableViewCell()
         }
     }
     
-    static func createSectionLayout() -> NSCollectionLayoutSection {
-//        let supplementaryViews = [
-//            NSCollectionLayoutBoundarySupplementaryItem(
-//                layoutSize: NSCollectionLayoutSize(
-//                    widthDimension: .fractionalWidth(1),
-//                    heightDimension: .absolute(50)
-//                ),
-//                elementKind: UICollectionView.elementKindSectionFooter,
-//                alignment: .bottom)
-//        ]
-        
-        let item = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .estimated(100)
-            )
-        )
-        
-        let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .estimated(100)
-            ),
-            subitem: item,
-            count: 1
-        )
-        
-        let section = NSCollectionLayoutSection(group: group)
-//        section.boundarySupplementaryItems = supplementaryViews
-        return section
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerText = UILabel()
+        headerText.textAlignment = .center
+        headerText.text = "User Reviews"
+        return headerText
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.color = .secondaryLabel
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        return activityIndicator
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 0
+        case 1:
+            return reviewResults.count == 0 ? 0 : 40
+        default:
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 0
+        case 1:
+            return pageNumber == totalPages+2 ? 0 : 50
+        default:
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        if !self.isFetching {
+            fetchVideoReview()
+        }
     }
     
 }

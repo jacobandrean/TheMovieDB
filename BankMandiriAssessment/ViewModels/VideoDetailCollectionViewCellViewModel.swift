@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct VideoDetailCollectionViewCellViewModel {
+struct VideoDetailTableViewCellViewModel {
     let title: String
+    let release_date: String
     let overview: String
 }
