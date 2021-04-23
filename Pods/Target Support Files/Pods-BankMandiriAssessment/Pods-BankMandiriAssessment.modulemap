@@ -1,0 +1,6 @@
+framework module Pods_BankMandiriAssessment {
+  umbrella header "Pods-BankMandiriAssessment-umbrella.h"
+
+  export *
+  module * { export * }
+}
